@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import datetime
 
 from .models import Greeting
 
@@ -10,10 +11,12 @@ def index(request):
 
 def db(request):
 
-    greeting = Greeting()
-    greeting.save()
+    # greeting = Greeting()
+    # greeting.save()
+    #
+    # greetings = Greeting.objects.all()
+    g.when=datetime.datetime.now()
 
-    greetings = Greeting.objects.all()
 
     return render(request, 'db.html', {'greetings': greetings})
 
