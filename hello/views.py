@@ -15,8 +15,7 @@ def db(request):
     # greeting.save()
     #
     # greetings = Greeting.objects.all()
-    g.when=datetime.datetime.now()
 
 
-    return render(request, 'db.html', {'greetings': greetings})
+    return render(request, 'db.html', {'greetings': {'when':datetime.datetime.now()}})
 
