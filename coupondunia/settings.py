@@ -123,7 +123,7 @@ STATICFILES_DIRS = (
 # #---------------------------------- heroku Connection To Database START---------------------------------------#
 
 
-
+DATABASES={}
 DATABASES['default']=dj_database_url.config()
 
 
