@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cricket'
+    'cricket',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,6 +99,8 @@ ALLOWED_HOSTS = ['*']
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+LOGIN_URL = '/login'
+
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -116,3 +118,14 @@ DATABASES = {
     }
 }
 #---------------------------------- Local Connection To Database END---------------------------------------#
+
+
+ALLOWED_TEAM_COMBINATION = [
+         {'BATSMEN':3,'WKEEPER':1 , 'ALLROUND':2, 'BOWLER':2},
+         {'BATSMEN':3,'WKEEPER':1 , 'ALLROUND':1, 'BOWLER':3},
+         {'BATSMEN':4,'WKEEPER':1 , 'ALLROUND':1, 'BOWLER':2}
+    ]
+
+NUMBER_OF_PLAYERS_ALLOWED_IN_TEAM = 8
+
+MAX_AMOUNT_ALLOTED_TO_TEAM = 100.0

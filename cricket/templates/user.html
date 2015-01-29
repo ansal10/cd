@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>
+        Coupon Dunia IPL
+    </title>
+</head>
+
+<body>
+
+
+    <div id="div1">
+    <h3><a href="/user">See All Users</a> </h3>
+        {% for e in errors %}
+
+            <h3>{{ e }}</h3><br>
+
+        {% endfor %}
+
+
+
+            {% for u in users %}
+                First Name: {{ u.first_name }}<br>
+                Last Name : {{ u.last_name }}<br>
+                Email: {{ u.email }}<br>
+                Username : {{ u.username }}<br>
+                Is Active: {{ u.is_active }}<br>
+                Is SuperUser: {{ u.is_superuser }}<br>
+
+                {% if superuser %}
+                    {% if u.is_active %}
+
+                        <a href="/user/{{ u.id }}?action=disapprove">Blacklist</a>
+
+                    {% else %}
+
+                         <a href="/user/{{ u.id }}?action=approve">Approve</a>
+
+                    {% endif %}
+                {% endif %}
+                <br><br><br>
+
+
+            {% endfor %}
+
+        {% for e in messages %}
+
+            {{ e }}<br>
+
+        {% endfor %}
+
+
+    <h2><a href="/"> Goto Homepage</a> </h2>
+    <h2><a href="/logout">Logout</a> </h2>
+    <h2><a href="/dashboard">Dashboard</a> </h2>
+
+    </div>
+</body>
+</html>

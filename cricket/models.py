@@ -19,42 +19,48 @@ PLAYERS_PROFILE = (
     ('ALLROUND', _('All Rounder')),
 )
 
+TEAM_STATUS = (
+    ('PROC', _('Processing')),
+    ('REJC', _('Rejected')),
+    ('APPR', _('Approved')),
+)
+
 class Team(models.Model):
+    user=models.ForeignKey(User, null=False)
     name=models.CharField(max_length=255, null=False)
     created_on = models.DateTimeField(auto_now_add=True, null=False)
     deleted_on = models.DateTimeField(blank=True, null=True, default=None)
     amount = models.FloatField(null=False, default=100.0)
-    models.TextField()
+    description = models.TextField(max_length=1024)
+    status = models.CharField(max_length=255, null=False, default='PROC', choices=PLAYERS_PROFILE)
 
-
-
-class Profile(models.Model):
-    user=models.OneToOneField(User, null=False, unique=True)
-    team = models.ForeignKey(Team, null=False)
 
 
 class Player(models.Model):
     name = models.CharField(max_length=255, null=False)
     age = models.IntegerField(null=False, default=25)
     country = models.CharField(max_length=255, null=False, choices=COUNTRY_ALLOWED_IN_IPL)
-    team=models.ForeignKey(Team)
     amount = models.FloatField(null=False, default=10.0)
     profile=models.CharField(max_length=255, null=False, choices=PLAYERS_PROFILE)
     created_on=models.DateTimeField(auto_now_add=True, null=False)
     deleted_on=models.DateTimeField(blank=True, null=True, default=None)
-    description = models.TextField()
+    description = models.TextField(max_length=1024)
+    approved = models.BooleanField(null=False, default=False)
+    available=models.BooleanField(null=False, default=True)
 
 
 class PlayerSelection(models.Model):
     team=models.ForeignKey(Team, null=False)
     player=models.ForeignKey(Player, null=False)
     deleted_on=models.DateTimeField(blank=True, null=True, default=None)
+    approved = models.BooleanField(null=False, default=False)
 
     class Meta:
         unique_together = (('team','player'))
 
 
 class Stats(models.Model):
+    player=models.OneToOneField(Player, null=False)
     matches=models.IntegerField(max_length=255)
     won=models.IntegerField(max_length=255)
     lost=models.IntegerField(max_length=255)
@@ -62,7 +68,7 @@ class Stats(models.Model):
     batting=models.FloatField(default=0.0)
     bowling=models.FloatField(default=0.0)
     wickets=models.IntegerField(default=0)
-    s6 = models.IntegerField(default=0)
-    s4 = models.IntegerField(default=0)
+    six = models.IntegerField(default=0)
+    four = models.IntegerField(default=0)
 
 

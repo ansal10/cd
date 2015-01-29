@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>
+        Coupon Dunia IPL
+    </title>
+</head>
+
+<body>
+
+    <div id="div1">
+
+        <form action="login" method="POST" >
+            {% csrf_token %}
+             {% for e in errors %}
+                      <div>
+                            {{ e }}<br><br><br>
+                      </div>
+                {% endfor %}
+
+                {% for f in loginform %}
+                    <div>
+                        {{ f.label_tag }}
+                        {{ f }}
+                        {{ f.errors }}
+                    </div>
+                {% endfor %}
+
+                <input type="hidden" name="next" value="{{ next }}">
+                <button type="submit">Submit</button>
+
+        </form>
+
+    </div>
+</body>
+</html>

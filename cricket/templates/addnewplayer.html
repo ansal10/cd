@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>
+        Coupon Dunia IPL
+    </title>
+</head>
+
+<body>
+
+    <div id="div1">
+
+
+    {% if message %}
+        <h2>{{ message }}</h2><br><br>
+    {% endif %}
+          <h2>Add new players</h2><br>
+
+        <form action="/dashboard/addnewplayer" method="POST">
+        {% csrf_token %}
+
+        {% for e in errors %}
+            {{ e }}<br>
+        {% endfor %}
+
+        {% for f in forms %}
+            {{ f.label_tag }}
+            {{ f }}<br>
+            {{ f.errors }}
+        {% endfor %}
+        <button type="submit">Submit</button>
+        </form>
+
+    <h2><a href="/"> Goto Homepage</a> </h2>
+    <h2><a href="/logout">Logout</a> </h2>
+    </div>
+</body>
+</html>

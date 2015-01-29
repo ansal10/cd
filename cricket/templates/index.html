@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>
+        Coupon Dunia IPL
+    </title>
+</head>
+
+<body>
+
+    <div id="div1">
+
+        {% if loggedin %}
+            <h2><a href="dashboard"> Welcome {{ user.username }}</a> </h2>
+            <h2><a href="dashboard"> Go to Dashboard</a> </h2>
+            <h2><a href="logout"> Logout</a> </h2>
+        {% else %}
+            <h2> <a href="login">Login</a></h2>
+            <h2> <a href="register">SignUp </a></h2>
+        {% endif %}
+
+    </div>
+</body>
+</html>

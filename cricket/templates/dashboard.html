@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>
+        Coupon Dunia IPL
+    </title>
+</head>
+
+<body>
+
+    {% if superuser %}
+        <h2><a href="/dashboard/addnewplayer">Add new players</a> </h2>
+        {% if message %}
+            {{ message }}<br><br>
+            {% endif %}
+
+        {% for e in errors %}
+            {{ e }}<br>
+        {% endfor %}
+        <div id="div1">
+            <h2> Pending Teams </h2><br>
+            {% for t in teams %}
+                <a style="font-size: 28px" href="/team/{{ t.id }}"> {{ t.name }}</a>
+                <a href="/team/{{ t.id }}?action=approve">Approve</a>
+                <a href="/team/{{ t.id }}?action=disapprove">Disapprove</a>
+                <br>
+            {% endfor %}
+        </div>
+
+        <div id="div2">
+            <h2> Pending Users  </h2> <br>
+            {% for t in users %}
+                <a style="font-size: 28px" href="/user/{{ t.id }}?action=stats"> {{ t.username }}</a>
+                <a href="/user/{{ t.id }}?action=approve">Approve</a>
+                <a href="/user/{{ t.id }}?action=disapprove">Disaprove</a>
+                <br>
+            {% endfor %}
+        </div>
+
+        <div id="div3">
+            <h2> Pending Players</h2><br>
+            {% for t in players %}
+                <a style="font-size: 28px" href="/player/{{ t.id }}?action=stats"> {{ t.name }}</a>
+                <a href="/player/{{ t.id }}?action=approve">Approve</a>
+                <a href="/player/{{ t.id }}?action=disapprove">Disaprove</a>
+                <br>
+            {% endfor %}
+        </div>
+
+
+
+    {% else %}
+        {% if team %}
+            <h2>Modify Your Team          <br>       Amount Left : {{ team.amount }}</h2><br>
+            <h3><a href="/dashboard/delete" > Delete Your team </a></h3><br>
+            <h3>{{ status }}</h3><br>
+        {% else %}
+            <h2>Create Your own Team      <br>       Amount Left : 100 </h2>
+        {% endif %}
+
+        <form action="dashboard" method="POST">
+        {% csrf_token %}
+        {% for e in errors%}
+            {{ e }}<br>
+        {% endfor %}
+
+        {% for f in form %}
+                    <div>
+                        {{ f.label_tag }}
+                        {{ f }}
+                        {{ f.errors }}
+                    </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+        </form>
+    {% endif %}
+
+
+    <h2><a href="/team">See all Teams</a></h2>
+    <h2><a href="/user">See all Users</a></h2>
+    <h2> <a href="/player">See all Players</a> </h2>
+    <h2><a href="/"> Goto Homepage</a> </h2>
+    <h2><a href="logout">Logout</a> </h2>
+
+</body>
+</html>
