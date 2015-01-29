@@ -59,12 +59,12 @@ WSGI_APPLICATION = 'coupondunia.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -87,7 +87,7 @@ STATIC_URL = '/static/'
 
 
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] =  dj_database_url.config()
+# DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -106,18 +106,29 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-#---------------------------------- Local Connection To Database START---------------------------------------#
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',     # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'cd',                                           # Or path to database file if using sqlite3.
-        'USER': 'postgres',                                          # Not used with sqlite3.
-        'PASSWORD': 'ansal10',                                      # Not used with sqlite3.
-        'HOST': 'localhost',                                    # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '5432',
-    }
-}
-#---------------------------------- Local Connection To Database END---------------------------------------#
+# #---------------------------------- Local Connection To Database START---------------------------------------#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',     # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#         'NAME': 'cd',                                           # Or path to database file if using sqlite3.
+#         'USER': 'postgres',                                          # Not used with sqlite3.
+#         'PASSWORD': 'ansal10',                                      # Not used with sqlite3.
+#         'HOST': 'localhost',                                    # Set to empty string for localhost. Not used with sqlite3.
+#         'PORT': '5432',
+#     }
+# }
+# #---------------------------------- Local Connection To Database END---------------------------------------#
+
+
+# #---------------------------------- heroku Connection To Database START---------------------------------------#
+
+
+
+DATABASES['default']=dj_database_url.config()
+
+
+
+# #---------------------------------- heroku Connection To Database END---------------------------------------#
 
 
 ALLOWED_TEAM_COMBINATION = [
