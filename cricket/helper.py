@@ -98,12 +98,14 @@ def ValidateAndAllotPlayersAddedToTeam(params=None,user_id=None):
         return errors
 
 
-
+    print "player_dict = ", player_dict
+    print "player_dict.values() = ", player_dict.values()
     player = Player.objects.filter(id__in=player_dict.values())
+    print "player = ", player
     comb = {x:y for x,y in [t.values() for t in Player.objects.values('profile').filter(id__in=player_dict.values()).annotate(dcount=Count('profile'))]}
     print comb
     if comb not in ALLOWED_TEAM_COMBINATION:
-        errors.append("Only Following Combination Are Allowed ")
+        errors.append("Only Following Combination Are Allowed")
         for i in ALLOWED_TEAM_COMBINATION:
             errors.append(i)
         return errors
